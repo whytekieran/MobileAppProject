@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="WordJumble.Game"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordJumble"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock x:Name="txtUnJumbledWord" 
+                   HorizontalAlignment="Center"  
+                   TextWrapping="Wrap" 
+                   Text=""
+                   FontSize="50"
+                   VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtJumbledWord" 
+                   Text=""
+                   FontSize="50"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"/>
+        <TextBox VerticalAlignment="Center" 
+                 Margin="0,378,0,223" 
+                 Width="300"
+                 TextWrapping="Wrap" 
+                 Text="" />
+
+    </Grid>
+</Page>
