@@ -24,6 +24,7 @@ namespace WordJumble
         private int wordsID;
         private String jumbledWord;
         private String unJumbledWord;
+        private string userWord;
         Random randomNum = new Random();
 
         public Game()
@@ -46,8 +47,6 @@ namespace WordJumble
                     wordsID = randomNum.Next(1, 200);
                     retrieveWord(wordsID, 0, out unJumbledWord);
                     jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-                    
-
                     txtUnJumbledWord.Text = unJumbledWord;
                     txtJumbledWord.Text = jumbledWord;
                     break;
@@ -56,9 +55,6 @@ namespace WordJumble
                     wordsID = randomNum.Next(1, 200);
                     retrieveWord(wordsID, 1, out unJumbledWord);
                     jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-
-
-
                     txtUnJumbledWord.Text = unJumbledWord;
                     txtJumbledWord.Text = jumbledWord;
                     break;
@@ -67,9 +63,6 @@ namespace WordJumble
                     wordsID = randomNum.Next(1, 190);
                     retrieveWord(wordsID, 2, out unJumbledWord);
                     jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-
-
-
                     txtUnJumbledWord.Text = unJumbledWord;
                     txtJumbledWord.Text = jumbledWord;
                     break;
@@ -78,9 +71,6 @@ namespace WordJumble
                     wordsID = randomNum.Next(1, 190);
                     retrieveWord(wordsID, 3, out unJumbledWord);
                     jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-
-
-                    
                     txtUnJumbledWord.Text = unJumbledWord;
                     txtJumbledWord.Text = jumbledWord;
                     break;
@@ -151,6 +141,21 @@ namespace WordJumble
             else
             {
                 unJumbledWord = result.Word;
+            }
+        }
+
+        private void enterWordClick(object sender, RoutedEventArgs e)
+        {
+            unJumbledWord = txtUnJumbledWord.Text;
+            userWord = txtEnteredWord.Text;
+           
+            if(userWord.Equals(unJumbledWord, StringComparison.OrdinalIgnoreCase))
+            {
+                //we have a match, equal word
+            }
+            else
+            {
+                //no match, user must try again
             }
         }
     }

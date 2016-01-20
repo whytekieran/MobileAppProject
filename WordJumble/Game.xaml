@@ -9,23 +9,29 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock x:Name="txtUnJumbledWord" 
-                   HorizontalAlignment="Center"  
-                   TextWrapping="Wrap" 
-                   Text=""
-                   FontSize="50"
-                   VerticalAlignment="Top"/>
         <TextBlock x:Name="txtJumbledWord" 
                    Text=""
                    FontSize="50"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"/>
-        <TextBox VerticalAlignment="Center" 
+        <TextBox x:Name="txtEnteredWord"
+                 VerticalAlignment="Center" 
                  Margin="0,378,0,223" 
                  Width="300"
                  TextWrapping="Wrap" 
-                 Text="" />
-
+                 Text=""/>
+        <Button Content="Enter" 
+                HorizontalAlignment="Center" 
+                Margin="149,438,142,145" Click="enterWordClick"/>
+        <TextBlock x:Name="txtUnJumbledWord" 
+                   HorizontalAlignment="Center"  
+                   TextWrapping="Wrap" 
+                   Text=""
+                   Height="70"
+                   Width="300"
+                   TextAlignment="Center"
+                   FontSize="50" 
+                   Margin="50,510,50,60"/>
     </Grid>
 </Page>
