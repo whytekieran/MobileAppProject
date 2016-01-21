@@ -9,6 +9,30 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBlock x:Name="txtTimeDisplay" 
+                   HorizontalAlignment="Center" 
+                   Text="0:00:000" 
+                   FontSize="31"
+                   Margin="149,176,134,426" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   Width="117"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   TextWrapping="Wrap" 
+                   Text="Score: " 
+                   FontSize="30"
+                   VerticalAlignment="Top"
+                   FontWeight="Bold"
+                   Margin="100,245,0,0"/>
+        <TextBlock x:Name="txtScore"
+                   HorizontalAlignment="Left" 
+                   TextWrapping="Wrap" 
+                   Text="rffy" 
+                   FontSize="30"
+                   FontWeight="Bold"
+                   VerticalAlignment="Top" 
+                   Margin="250,245,0,0"/>
         <TextBlock x:Name="txtJumbledWord" 
                    Text=""
                    FontSize="50"
@@ -25,7 +49,9 @@
                  InputScope="Chat"/>
         <Button Content="Enter" 
                 HorizontalAlignment="Center" 
-                Margin="149,438,142,145" Click="enterWordClick"/>
+                Margin="149,438,142,145" 
+                Click="enterWordClick"
+                VerticalAlignment="Center"/>
         <TextBlock x:Name="txtResult"
                    HorizontalAlignment="Center"
                    Height="65"

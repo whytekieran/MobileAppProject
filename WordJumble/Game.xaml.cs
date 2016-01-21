@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,7 +28,11 @@ namespace WordJumble
         private String unJumbledWord;
         private string userWord;
         private DataPasser dataHolder;
+        private int score = 0;
         Random randomNum = new Random();
+        DispatcherTimer timer;                                                         //Used to launch a tick event
+        Stopwatch stopWatch;
+        private long mins, secs, millisecs;
 
         public Game()
         {
@@ -37,11 +42,44 @@ namespace WordJumble
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            timer = new DispatcherTimer();
+            stopWatch = new Stopwatch();
+            mins = secs = millisecs = 0;
             con = new SQLiteConnection("GameDatabase.db");
             con.CreateTable<Words>();
-           
-            dataHolder = e.Parameter as DataPasser;
-            retreiveAndOutputWord(dataHolder.data);
+
+           txtScore.Text = score.ToString();
+           dataHolder = e.Parameter as DataPasser;
+           retreiveAndOutputWord(dataHolder.data);
+
+           timer = new DispatcherTimer();
+           timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+           timer.Tick += timerTick;
+           timer.Start();
+           stopWatch.Start();
+        }
+
+        private void timerTick(object sender, object e)
+        {
+            millisecs = stopWatch.ElapsedMilliseconds;
+
+            secs = millisecs / 1000;
+            millisecs = millisecs % 1000;
+
+            mins = secs / 60;
+            secs = secs % 60;
+            
+            mins = mins % 60;
+
+            //create string for textblock
+            txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString() + ":" + millisecs.ToString();
+
+            if(mins == 3)
+            {
+                timer.Stop();
+                stopWatch.Stop();
+                txtTimeDisplay.Text = "3" + ":" + "00" + ":" + "000";
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -131,12 +169,16 @@ namespace WordJumble
                 txtResult.Foreground = new SolidColorBrush(Colors.Green);
                 txtResult.Text = "Correct";
                 retreiveAndOutputWord(dataHolder.data);
+                txtEnteredWord.Text = "";
+                score += 4;
+                txtScore.Text = score.ToString();
             }
             else
             {
                 //No match, incorrect guess user must try again
                 txtResult.Foreground = new SolidColorBrush(Colors.Red);
                 txtResult.Text = "Incorrect";
+                txtEnteredWord.Text = "";
             }
         }
 
