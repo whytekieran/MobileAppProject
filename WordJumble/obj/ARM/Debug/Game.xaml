@@ -15,24 +15,35 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"/>
-        <TextBox x:Name="txtEnteredWord"
+        <TextBox x:ConnectionId='1' x:Name="txtEnteredWord"
                  VerticalAlignment="Center" 
                  Margin="0,378,0,223" 
                  Width="300"
                  TextWrapping="Wrap" 
-                 Text=""/>
-        <Button x:ConnectionId='1' Content="Enter" 
+                 Text="" 
+                                      
+                 InputScope="Chat"/>
+        <Button x:ConnectionId='2' Content="Enter" 
                 HorizontalAlignment="Center" 
                 Margin="149,438,142,145"                       />
+        <TextBlock x:Name="txtResult"
+                   HorizontalAlignment="Center"
+                   Height="65"
+                   TextWrapping="Wrap"
+                   FontSize="60"
+                   Width="300"
+                   TextAlignment="Center"
+                   Text="" 
+                   Margin="50,509,50,66" />
         <TextBlock x:Name="txtUnJumbledWord" 
                    HorizontalAlignment="Center"  
                    TextWrapping="Wrap" 
                    Text=""
-                   Height="70"
-                   Width="300"
+                   Height="30"
+                   Width="100"
                    TextAlignment="Center"
-                   FontSize="50" 
-                   Margin="50,510,50,60"/>
+                   FontSize="10" 
+                   Margin="149,600,151,10"/>
     </Grid>
 </Page>
 

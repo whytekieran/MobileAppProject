@@ -96,6 +96,13 @@
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameType.cs" />
+    <Compile Include="HighScore.cs" />
+    <Compile Include="HighScores.xaml.cs">
+      <DependentUpon>HighScores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HighScoresMenu.xaml.cs">
+      <DependentUpon>HighScoresMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +130,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighScores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighScoresMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

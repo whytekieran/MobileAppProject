@@ -17,9 +17,11 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
-                    Margin="10,15,10,25">
+                    Margin="10,10,10,10">
             <TextBlock Text="Word Jumble"
-                       Margin="30,0,0,0"
+                       TextAlignment="Center"
+                       Margin="2,2,2,2"
+                       FontWeight="Bold"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </StackPanel>
 
@@ -45,7 +47,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <TextBlock x:Name="test" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        
 
     </Grid>
 </Page>

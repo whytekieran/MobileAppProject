@@ -13,8 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
-
 namespace WordJumble
 {
     public sealed partial class MainPage : Page
@@ -43,26 +41,39 @@ namespace WordJumble
             }
 
             option = new GameType();
-            option.userChoice = " 4 Words";
+            option.userChoice = " 4 Letter Word Jumble";
             gameOptions.Add(option);
 
             option = new GameType();
-            option.userChoice = " 5 Words";
+            option.userChoice = " 5 Letter Word Jumble";
             gameOptions.Add(option);
 
             option = new GameType();
-            option.userChoice = " 6 Words";
+            option.userChoice = " 6 Letter Word Jumble";
             gameOptions.Add(option);
 
             option = new GameType();
-            option.userChoice = " 7 Words";
+            option.userChoice = " 7 Letter Word Jumble";
             gameOptions.Add(option);
+
+            option = new GameType();
+            option.userChoice = " High Scores Menu";
+            gameOptions.Add(option);
+
         }//end createGameOptionList
 
         private void listItemTap(object sender, TappedRoutedEventArgs e)
         {
             selectedIndex = Convert.ToInt32(gameOptionsList.SelectedIndex);
-            Frame.Navigate(typeof(Game), new DataPasser { data = selectedIndex });
+
+            if(selectedIndex >= 0 && selectedIndex <= 3)
+            {
+                Frame.Navigate(typeof(Game), new DataPasser { data = selectedIndex });
+            }
+            else if(selectedIndex == 4)
+            {
+                Frame.Navigate(typeof(HighScoresMenu));
+            }
         }
     }
 }

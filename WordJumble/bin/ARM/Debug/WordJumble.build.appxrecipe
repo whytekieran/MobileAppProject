@@ -55,6 +55,12 @@
     <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Debug\Game.xbf">
       <PackagePath>Game.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Debug\HighScores.xbf">
+      <PackagePath>HighScores.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Debug\HighScoresMenu.xbf">
+      <PackagePath>HighScoresMenu.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>

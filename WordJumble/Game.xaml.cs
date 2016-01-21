@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,7 @@ namespace WordJumble
         private String jumbledWord;
         private String unJumbledWord;
         private string userWord;
+        private DataPasser dataHolder;
         Random randomNum = new Random();
 
         public Game()
@@ -38,43 +40,8 @@ namespace WordJumble
             con = new SQLiteConnection("GameDatabase.db");
             con.CreateTable<Words>();
            
-            DataPasser data = e.Parameter as DataPasser;
-
-            switch(data.data)
-            {
-                case 0:
-                    //4Word Game
-                    wordsID = randomNum.Next(1, 200);
-                    retrieveWord(wordsID, 0, out unJumbledWord);
-                    jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-                    txtUnJumbledWord.Text = unJumbledWord;
-                    txtJumbledWord.Text = jumbledWord;
-                    break;
-                case 1:
-                    //5Word Game
-                    wordsID = randomNum.Next(1, 200);
-                    retrieveWord(wordsID, 1, out unJumbledWord);
-                    jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-                    txtUnJumbledWord.Text = unJumbledWord;
-                    txtJumbledWord.Text = jumbledWord;
-                    break;
-                case 2:
-                    //6Word Game
-                    wordsID = randomNum.Next(1, 190);
-                    retrieveWord(wordsID, 2, out unJumbledWord);
-                    jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-                    txtUnJumbledWord.Text = unJumbledWord;
-                    txtJumbledWord.Text = jumbledWord;
-                    break;
-                case 3:
-                    //7Word Game
-                    wordsID = randomNum.Next(1, 190);
-                    retrieveWord(wordsID, 3, out unJumbledWord);
-                    jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());
-                    txtUnJumbledWord.Text = unJumbledWord;
-                    txtJumbledWord.Text = jumbledWord;
-                    break;
-            }
+            dataHolder = e.Parameter as DataPasser;
+            retreiveAndOutputWord(dataHolder.data);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -102,6 +69,15 @@ namespace WordJumble
                 StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("GameDatabase.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
+        }
+
+        private void retreiveAndOutputWord(int statementSelect)
+        {
+            wordsID = randomNum.Next(1, 200);
+            retrieveWord(wordsID, statementSelect, out unJumbledWord);
+            jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray()); //Shuffle the word
+            txtUnJumbledWord.Text = unJumbledWord;
+            txtJumbledWord.Text = jumbledWord;
         }
 
         private void retrieveWord(int id, int statementSelect, out string unJumbledWord)
@@ -151,12 +127,22 @@ namespace WordJumble
            
             if(userWord.Equals(unJumbledWord, StringComparison.OrdinalIgnoreCase))
             {
-                //we have a match, equal word
+                //Match, correct guess give the user another word
+                txtResult.Foreground = new SolidColorBrush(Colors.Green);
+                txtResult.Text = "Correct";
+                retreiveAndOutputWord(dataHolder.data);
             }
             else
             {
-                //no match, user must try again
+                //No match, incorrect guess user must try again
+                txtResult.Foreground = new SolidColorBrush(Colors.Red);
+                txtResult.Text = "Incorrect";
             }
+        }
+
+        private void whenInUse(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = "";
         }
     }
 }
