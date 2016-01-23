@@ -8,6 +8,7 @@ namespace WordJumble
 {
     class HighScore
     {
+        //Class which represents HighScore elements in the high score tables of the game database
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public int Id { get; set; }
         public int Score { get; set; }
