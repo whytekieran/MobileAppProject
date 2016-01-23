@@ -5,11 +5,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,19 +35,22 @@ namespace WordJumble
         Random randomNum = new Random();
         DispatcherTimer timer;                                                         //Used to launch a tick event
         Stopwatch stopWatch;
-        private long mins, secs, millisecs;
+        private long mins;
+        private long secs;
 
         public Game()
         {
-            copyDatabase();
             this.InitializeComponent();
+            copyDatabase();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             timer = new DispatcherTimer();
             stopWatch = new Stopwatch();
-            mins = secs = millisecs = 0;
+
+            secs = 59;
+            mins = 2;
             con = new SQLiteConnection("GameDatabase.db");
             con.CreateTable<Words>();
 
@@ -53,7 +59,7 @@ namespace WordJumble
            retreiveAndOutputWord(dataHolder.data);
 
            timer = new DispatcherTimer();
-           timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+           timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
            timer.Tick += timerTick;
            timer.Start();
            stopWatch.Start();
@@ -61,25 +67,33 @@ namespace WordJumble
 
         private void timerTick(object sender, object e)
         {
-            millisecs = stopWatch.ElapsedMilliseconds;
+            --secs;
 
-            secs = millisecs / 1000;
-            millisecs = millisecs % 1000;
+            txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString();
 
-            mins = secs / 60;
-            secs = secs % 60;
-            
-            mins = mins % 60;
-
-            //create string for textblock
-            txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString() + ":" + millisecs.ToString();
-
-            if(mins == 3)
+            if(secs == 0)
             {
-                timer.Stop();
-                stopWatch.Stop();
-                txtTimeDisplay.Text = "3" + ":" + "00" + ":" + "000";
+               secs = 59;
+               --mins;
+
+               txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString();
+
+               if(mins < 0)
+               {
+                  timer.Stop();
+                  stopWatch.Stop();
+                  txtTimeDisplay.Text = "0" + ":" + "00";
+                  MessageBoxDisplay();
+                  Frame.Navigate(typeof(GameOver), new ScoreInformationPasser { score = score, gameType = dataHolder.data });
+               }   
             }
+        }
+
+        private async void MessageBoxDisplay()
+        {
+            //Creating instance of MessageDialog and calling its show method to show a message box
+            MessageDialog msgbox = new MessageDialog("Game Over, Score: "+score);    
+            await msgbox.ShowAsync();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

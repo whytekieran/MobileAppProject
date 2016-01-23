@@ -22,11 +22,12 @@ namespace WordJumble
     {
         private SQLiteConnection con;
         private DataPasser dataHolder;
+        private int rank;
 
         public HighScores()
         {
-            copyDatabase();
             this.InitializeComponent();
+            copyDatabase();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,24 +37,36 @@ namespace WordJumble
             con.CreateTable<HighScore>();
 
             dataHolder = e.Parameter as DataPasser;
+            getListOfScores(dataHolder.data, out tasks);
+          
+            for (rank = 0; rank < tasks.Count(); ++rank)
+            {
+                HighScore currentInList = tasks.ElementAt(rank);
+                currentInList.Id = (rank + 1);
+                tasks.RemoveAt(rank);
+                tasks.Insert(rank, currentInList);
+            }
 
-            switch(dataHolder.data)
+            gameHighScoreList.ItemsSource = tasks;
+        }
+
+        private void getListOfScores(int statementSelect, out List<HighScore> tasks)
+        {
+            tasks = null;
+
+            switch (statementSelect)
             {
                 case 0:
-                    tasks = con.Query<HighScore>("select * from FourLetterHighScores order by score").ToList<HighScore>();
-                    gameHighScoreList.ItemsSource = tasks;
+                    tasks = con.Query<HighScore>("select * from FourLetterHighScores order by score desc").ToList<HighScore>();
                     break;
                 case 1:
-                    tasks = con.Query<HighScore>("select * from FiveLetterHighScores order by score").ToList<HighScore>();
-                    gameHighScoreList.ItemsSource = tasks;
+                    tasks = con.Query<HighScore>("select * from FiveLetterHighScores order by score desc").ToList<HighScore>();
                     break;
                 case 2:
-                    tasks = con.Query<HighScore>("select * from SixLetterHighScores order by score").ToList<HighScore>();
-                    gameHighScoreList.ItemsSource = tasks;
+                    tasks = con.Query<HighScore>("select * from SixLetterHighScores order by score desc").ToList<HighScore>();
                     break;
                 case 3:
-                    tasks = con.Query<HighScore>("select * from SevenLetterHighScores order by score").ToList<HighScore>();
-                    gameHighScoreList.ItemsSource = tasks;
+                    tasks = con.Query<HighScore>("select * from SevenLetterHighScores order by score desc").ToList<HighScore>();
                     break;
             }
         }

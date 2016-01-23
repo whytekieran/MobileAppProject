@@ -8,16 +8,16 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="gameDisplay">
         <TextBlock x:Name="txtTimeDisplay" 
                    HorizontalAlignment="Center" 
-                   Text="0:00:000" 
+                   Text="0:00" 
                    FontSize="31"
-                   Margin="149,176,134,426" 
+                   Margin="176,173,98,429" 
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Style="{StaticResource TitleTextBlockStyle}" 
-                   Width="117"/>
+                   Width="126"/>
         <TextBlock HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 
                    Text="Score: " 

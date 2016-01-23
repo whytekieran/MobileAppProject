@@ -10,7 +10,7 @@ namespace WordJumble
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public int Id { get; set; }
-        public int score { get; set; }
+        public int Score { get; set; }
         public string Name { get; set; }
     }
 }

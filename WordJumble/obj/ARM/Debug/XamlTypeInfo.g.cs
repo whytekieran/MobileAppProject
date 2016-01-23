@@ -124,21 +124,23 @@ namespace WordJumble.WordJumble_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
+            _typeNameTable = new string[7];
             _typeNameTable[0] = "WordJumble.Game";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "WordJumble.HighScores";
-            _typeNameTable[4] = "WordJumble.HighScoresMenu";
-            _typeNameTable[5] = "WordJumble.MainPage";
+            _typeNameTable[3] = "WordJumble.GameOver";
+            _typeNameTable[4] = "WordJumble.HighScores";
+            _typeNameTable[5] = "WordJumble.HighScoresMenu";
+            _typeNameTable[6] = "WordJumble.MainPage";
 
-            _typeTable = new global::System.Type[6];
+            _typeTable = new global::System.Type[7];
             _typeTable[0] = typeof(global::WordJumble.Game);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::WordJumble.HighScores);
-            _typeTable[4] = typeof(global::WordJumble.HighScoresMenu);
-            _typeTable[5] = typeof(global::WordJumble.MainPage);
+            _typeTable[3] = typeof(global::WordJumble.GameOver);
+            _typeTable[4] = typeof(global::WordJumble.HighScores);
+            _typeTable[5] = typeof(global::WordJumble.HighScoresMenu);
+            _typeTable[6] = typeof(global::WordJumble.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -174,9 +176,10 @@ namespace WordJumble.WordJumble_XamlTypeInfo
         }
 
         private object Activate_0_Game() { return new global::WordJumble.Game(); }
-        private object Activate_3_HighScores() { return new global::WordJumble.HighScores(); }
-        private object Activate_4_HighScoresMenu() { return new global::WordJumble.HighScoresMenu(); }
-        private object Activate_5_MainPage() { return new global::WordJumble.MainPage(); }
+        private object Activate_3_GameOver() { return new global::WordJumble.GameOver(); }
+        private object Activate_4_HighScores() { return new global::WordJumble.HighScores(); }
+        private object Activate_5_HighScoresMenu() { return new global::WordJumble.HighScoresMenu(); }
+        private object Activate_6_MainPage() { return new global::WordJumble.MainPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -203,23 +206,30 @@ namespace WordJumble.WordJumble_XamlTypeInfo
                 xamlType = new global::WordJumble.WordJumble_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  WordJumble.HighScores
+            case 3:   //  WordJumble.GameOver
                 userType = new global::WordJumble.WordJumble_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_HighScores;
+                userType.Activator = Activate_3_GameOver;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  WordJumble.HighScoresMenu
+            case 4:   //  WordJumble.HighScores
                 userType = new global::WordJumble.WordJumble_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_HighScoresMenu;
+                userType.Activator = Activate_4_HighScores;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 5:   //  WordJumble.MainPage
+            case 5:   //  WordJumble.HighScoresMenu
                 userType = new global::WordJumble.WordJumble_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_MainPage;
+                userType.Activator = Activate_5_HighScoresMenu;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  WordJumble.MainPage
+                userType = new global::WordJumble.WordJumble_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -557,5 +567,7 @@ namespace WordJumble.WordJumble_XamlTypeInfo
         }
     }
 }
+
+
 
 

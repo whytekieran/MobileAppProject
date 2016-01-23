@@ -2,7 +2,7 @@
 <Roots >
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="Name" />
-    <RootPropertyPathName Name="score" />
+    <RootPropertyPathName Name="Score" />
     <RootPropertyPathName Name="Id" />
     <RootPropertyPathName Name="userChoice" />
   </Roots.PropertyPathNames>
@@ -16,8 +16,8 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Children" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Margin" />
       <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="Margin" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
     </RootType>
@@ -41,6 +41,7 @@
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="Text" />
       <RootProperty Name="InputScope" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootEvent Name="GotFocus" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
@@ -52,6 +53,16 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="WordJumble.Game" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Background" />
+    </RootType>
+    <RootType FullName="WordJumble.GameOver" />
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Content" />
     </RootType>
@@ -70,17 +81,8 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="Content" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
-      <RootProperty Name="Orientation" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Background" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding" />
     <RootType FullName="WordJumble.HighScores" />
-    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
-      <RootProperty Name="Height" />
-    </RootType>
     <RootType FullName="WordJumble.HighScoresMenu" />
     <RootType FullName="WordJumble.MainPage" />
   </Roots.RootTypes>

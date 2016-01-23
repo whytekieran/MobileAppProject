@@ -95,6 +95,9 @@
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameOver.xaml.cs">
+      <DependentUpon>GameOver.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameType.cs" />
     <Compile Include="HighScore.cs" />
     <Compile Include="HighScores.xaml.cs">
@@ -107,6 +110,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreInformationPasser.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="Words.cs" />
@@ -130,6 +134,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

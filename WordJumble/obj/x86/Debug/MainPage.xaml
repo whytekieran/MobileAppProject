@@ -11,38 +11,44 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
-                    Margin="10,15,10,25">
+                    Margin="10,10,10,10">
             <TextBlock Text="Word Jumble"
-                       Margin="30,0,0,0"
+                       TextAlignment="Center"
+                       Margin="2,2,2,2"
+                       FontWeight="Bold"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </StackPanel>
 
-        <Grid Grid.Row="1">
-            <ListBox x:Name="gameOptionsList" 
-                      Margin="25,25,25,25"
-                      Background="Transparent">
+        <Grid Grid.Row="1"
+              Margin="5,5,5,5">
+            <ListBox x:ConnectionId='1' x:Name="gameOptionsList"
+                                         
+                     Margin="15,15,15,15"
+                     Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <ListBoxItem x:ConnectionId='1'                     >
-                            <StackPanel>
+                        <StackPanel Background="{StaticResource ApplicationSecondaryForegroundThemeBrush}">
                                 <TextBlock Text="{Binding userChoice}"
-                                            Height="50"
-                                            Width="330"
-                                            Margin="0,0,0,0"
-                                            Style="{StaticResource ListViewItemTextBlockStyle}">
+                                           Style="{StaticResource ListViewItemTextBlockStyle}"
+                                           Height="50"
+                                           Width="350"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Bold">
                                 </TextBlock>
-                            </StackPanel>
-                        </ListBoxItem>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+        
+
     </Grid>
 </Page>
 

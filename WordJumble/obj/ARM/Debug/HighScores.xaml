@@ -35,7 +35,7 @@
                                 TextWrapping="Wrap"
                                 Style="{StaticResource ListViewItemTextBlockStyle}"
                                 HorizontalAlignment="Center" 
-                                Text="{Binding score}"
+                                Text="{Binding Score}"
                                 Height="40"
                                 Width="90"
                                 Margin="10"
