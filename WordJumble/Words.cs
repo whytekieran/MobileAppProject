@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WordJumble
 {
+    //Class used to represent a word record retrived from a word table in the game database
     class Words
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement]

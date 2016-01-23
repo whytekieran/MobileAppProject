@@ -18,29 +18,35 @@ namespace WordJumble
 {
     public sealed partial class HighScoresMenu : Page
     {
-        List<GameType> highscoreOptions;
-        int selectedIndex;
+        List<GameType> highscoreOptions;                       //List of GameType objects to hold high score menu options
+        int selectedIndex;                                     //An int to hold the index of the listbox item selected by the user
 
+        //Constructor
         public HighScoresMenu()
         {
             this.InitializeComponent();
-            createGameOptionList();
-            highscoreOptionsList.ItemsSource = highscoreOptions;
-        }
+            createGameOptionList();                                         //Populate list with high score menu options
+            highscoreOptionsList.ItemsSource = highscoreOptions;            //Make list of GameTypes the item source for the list
+        }//end HighScoresMenu constructor
 
+        //Create list of high score options for the user
         private void createGameOptionList()
         {
-            GameType option;
+            GameType option;                                        //Declare GameType object
 
-            if (highscoreOptions == null)
+            if (highscoreOptions == null)                       //Instantiate list of GameTypes if it hasnt been already
             {
-                highscoreOptions = new List<GameType>();
+                highscoreOptions = new List<GameType>();            //Instantiate done here
             }
-
+            
+            //We then instantiate the single GameType object, give its instance variable
+            //(which is the variable we are binding) a value and add the 
+            //object to the list
             option = new GameType();
             option.userChoice = " 4 Letter High Scores";
             highscoreOptions.Add(option);
 
+            //Repeat the process for each high score option
             option = new GameType();
             option.userChoice = " 5 Letter High Scores";
             highscoreOptions.Add(option);
@@ -52,11 +58,15 @@ namespace WordJumble
             option = new GameType();
             option.userChoice = " 7 Letter High Scores";
             highscoreOptions.Add(option);
-        }
+        }//end createGameOptionList()
 
+        //Tap event for the listbox
         private void listItemTap(object sender, TappedRoutedEventArgs e)
         {
+            //first get the index of the listbox item tapped by the user
             selectedIndex = Convert.ToInt32(highscoreOptionsList.SelectedIndex);
+
+            //Go to HighScores.xaml and pass the users choice using the DataPasser.cs class
             Frame.Navigate(typeof(HighScores), new DataPasser { data = selectedIndex });
         }
     }

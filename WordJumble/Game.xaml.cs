@@ -25,89 +25,102 @@ namespace WordJumble
 {
     public sealed partial class Game : Page
     {
-        private SQLiteConnection con;
-        private int wordsID;
-        private String jumbledWord;
-        private String unJumbledWord;
-        private string userWord;
-        private DataPasser dataHolder;
-        private int score = 0;
-        Random randomNum = new Random();
-        DispatcherTimer timer;                                                         //Used to launch a tick event
-        Stopwatch stopWatch;
-        private long mins;
-        private long secs;
+        private SQLiteConnection con;                           //Declare an SQLite connection
+        private int wordsID;                                    //Decides which word is retreived from the database
+        private String jumbledWord;                             //Holds the jumbled version of the word
+        private String unJumbledWord;                           //Holds the unjumbled version of the word
+        private string userWord;                                //Holds the word entered by the user
+        private DataPasser dataHolder;                          //Used to pass and receive information from and to other pages
+        private int score = 0;                                  //The users score
+        Random randomNum = new Random();                        //Generate random number to select random word
+        DispatcherTimer timer;                                  //Timer is used to launch a tick event
+        Stopwatch stopWatch;                                    //Stopwatch works by ticks specified by timer
+        private long mins;                                      //Holds the minutes of the timer
+        private long secs;                                      //Holds the seconds of the timer
 
+        //Constructor for Game.xaml
         public Game()
         {
             this.InitializeComponent();
-            copyDatabase();
-        }
+            copyDatabase();                                     //Copy the database so it can be found locally
+        }//end constructor
 
+        //When the game page has been navigated to.....
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            timer = new DispatcherTimer();
-            stopWatch = new Stopwatch();
+            timer = new DispatcherTimer();              //Instantiate a timer
+            stopWatch = new Stopwatch();                //Instantiate a stop watch
 
-            secs = 59;
-            mins = 2;
-            con = new SQLiteConnection("GameDatabase.db");
+            secs = 60;                                              //seconds for timer is set to 59
+            mins = 2;                                               //minutes for timer is set to 2
+            con = new SQLiteConnection("GameDatabase.db");          //Instantiate an SQLite connection object for the Games database
             con.CreateTable<Words>();
 
-           txtScore.Text = score.ToString();
-           dataHolder = e.Parameter as DataPasser;
-           retreiveAndOutputWord(dataHolder.data);
+           txtScore.Text = score.ToString();                     //Output user score, zero to begin with
+           dataHolder = e.Parameter as DataPasser;               //Get data passed from MainPage.xaml specifying which game the user wants
+           retreiveAndOutputWord(dataHolder.data);              //Use the data to retrieve word from certain table, jumble and output it
 
-           timer = new DispatcherTimer();
-           timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
-           timer.Tick += timerTick;
-           timer.Start();
-           stopWatch.Start();
+           timer.Interval = new TimeSpan(0, 0, 0, 1, 0);        //Set the timer interval to one second
+           timer.Tick += timerTick;                             //Add event to timers tick event
+           timer.Start();                                       //Start the timer
+           stopWatch.Start();                                   //Start the stopwatch
         }
 
+        //Event for timer.Tick, timers interval has been set for one second so this event fires once a second
+        //Counting down from 3 minutes
         private void timerTick(object sender, object e)
         {
-            --secs;
+            --secs; //Every tick removes one second
 
-            txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString();
+            txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString(); //Output mins and seconds to the screen
 
-            if(secs == 0)
+            if(secs == 0)//If seconds  is zero
             {
-               secs = 59;
-               --mins;
+               secs = 59; //reset it
+               --mins;    //take away a minute
 
+               //Time must still be outputted even if seconds is zero
                txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString();
 
+               //if mins is less than zero and seconds is zero to (outer if)
                if(mins < 0)
                {
-                  timer.Stop();
-                  stopWatch.Stop();
-                  txtTimeDisplay.Text = "0" + ":" + "00";
-                  MessageBoxDisplay();
+                  timer.Stop();                                         //Stop the timer
+                  stopWatch.Stop();                                     //Stop the stopwatch
+                  txtTimeDisplay.Text = "0" + ":" + "00";               //Output zero minutes and seconds
+                  MessageBoxDisplay();                                  //Output a message box stating the games over and the score
+                  
+                   //Navigate to the GameOver.xaml page so the user can enter his/her high score. Use ScoreInformationPasser.cs
+                  //to pass the score and which game (4letter, 5letter etc) is being played
                   Frame.Navigate(typeof(GameOver), new ScoreInformationPasser { score = score, gameType = dataHolder.data });
                }   
             }
-        }
+        }//end timerTick()
 
+        //Displays a game over message box with the users score
         private async void MessageBoxDisplay()
         {
             //Creating instance of MessageDialog and calling its show method to show a message box
             MessageDialog msgbox = new MessageDialog("Game Over, Score: "+score);    
-            await msgbox.ShowAsync();
+            await msgbox.ShowAsync();   
         }
 
+        //When the page has been navigated away from
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            //Check if the connection is open and if it is
             if (con != null)
                 con.Close(); // Close the database connection.   
         }
 
+        //Copying the database so it can be found locally
         private async void copyDatabase()
         {
-            bool isDatabaseExisting = false;
+            bool isDatabaseExisting = false;        //Set true if the database exists
 
             try
             {
+                //Check if we can find the database and if we can it exists
                 StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("GameDatabase.db");
                 isDatabaseExisting = true;
             }
@@ -116,31 +129,36 @@ namespace WordJumble
                 isDatabaseExisting = false;
             }
 
+            //If the database exists
             if (isDatabaseExisting)
             {
+                //Copy it locally
                 StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("GameDatabase.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
         }
 
+        //Retreives a word from the database, jumbles it, and outputs it, takes one parameter which decides what query to execute
         private void retreiveAndOutputWord(int statementSelect)
         {
-            wordsID = randomNum.Next(1, 200);
-            retrieveWord(wordsID, statementSelect, out unJumbledWord);
-            jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray()); //Shuffle the word
-            txtUnJumbledWord.Text = unJumbledWord;
-            txtJumbledWord.Text = jumbledWord;
+            wordsID = randomNum.Next(1, 200);                          //Generate random number between 1-200 amount of words in table
+            retrieveWord(wordsID, statementSelect, out unJumbledWord);       //Execute query to get a word (unjumbled word)
+            jumbledWord = new string(unJumbledWord.OrderBy(r => randomNum.Next()).ToArray());   //Shuffle the word
+            txtJumbledWord.Text = jumbledWord;          //make unjumbled word text block equal to unjumbled word
         }
 
+        //receive word from the database
         private void retrieveWord(int id, int statementSelect, out string unJumbledWord)
         {
             //Retrieving Data
             Words result;
-            switch(statementSelect)
+            switch(statementSelect)//depending on which game the user choose to play
             {
+                 //Use a particular statement
                  case 0:
                     result = con.Query<Words>("select * from FourLetterWords where id =" + id).FirstOrDefault();
-                    assignUnJumbledWord(result, out unJumbledWord);
+                    //Then assign the word to unjumbled word passed from method using out keyword
+                    assignUnJumbledWord(result, out unJumbledWord); 
                     break;
                 case 1:
                      result = con.Query<Words>("select * from FiveLetterWords where id =" + id).FirstOrDefault();
@@ -160,6 +178,7 @@ namespace WordJumble
             }
         }
 
+        //Assigns variable unjumbled word the word retreived from the database
         private void assignUnJumbledWord(Words result, out string unJumbledWord)
         {
             if (result == null)
@@ -168,36 +187,41 @@ namespace WordJumble
             }
             else
             {
+                //No need to return the word as its being passed from method to method
                 unJumbledWord = result.Word;
             }
         }
 
+        //Button click for when user wants to submit a word
         private void enterWordClick(object sender, RoutedEventArgs e)
         {
-            unJumbledWord = txtUnJumbledWord.Text;
+            //Get the word entered by the user
             userWord = txtEnteredWord.Text;
            
+            //Check if it is equal to the unjumbled version of the word and if it is..
             if(userWord.Equals(unJumbledWord, StringComparison.OrdinalIgnoreCase))
             {
                 //Match, correct guess give the user another word
-                txtResult.Foreground = new SolidColorBrush(Colors.Green);
-                txtResult.Text = "Correct";
-                retreiveAndOutputWord(dataHolder.data);
-                txtEnteredWord.Text = "";
-                score += 4;
-                txtScore.Text = score.ToString();
+                txtResult.Foreground = new SolidColorBrush(Colors.Green);  //Set result textblock foreground to green
+                txtResult.Text = "Correct";                                //Output the word "Correct" in green
+                retreiveAndOutputWord(dataHolder.data);                    //Call method the retrieves, jumbles and outputs another word
+                txtEnteredWord.Text = "";                                  //reset textbox for entered user words
+                score += 4;                                                //increment the score
+                txtScore.Text = score.ToString();                          //output the new score
             }
             else
             {
                 //No match, incorrect guess user must try again
-                txtResult.Foreground = new SolidColorBrush(Colors.Red);
-                txtResult.Text = "Incorrect";
-                txtEnteredWord.Text = "";
+                txtResult.Foreground = new SolidColorBrush(Colors.Red);   //Set result textblock foreground to red
+                txtResult.Text = "Incorrect";                             //Output the word "Incorrect" in red
+                txtEnteredWord.Text = "";                                 //reset textbox for entered user words
             }
         }
 
+        //When the text box for entering word is in focus
         private void whenInUse(object sender, RoutedEventArgs e)
         {
+            //the txtblock for outputting correct or incorrect should not show anything
             txtResult.Text = "";
         }
     }

@@ -17,35 +17,35 @@ namespace WordJumble
 {
     public sealed partial class MainPage : Page
     {
-        List<GameType> gameOptions;
-        int selectedIndex;
+        List<GameType> gameOptions;                         //List of GameType objects
+        int selectedIndex;                                  //Holds the index of the item user selects from listbox
 
         //Constructor
         public MainPage()
         {
             this.InitializeComponent();
-            createGameOptionList();
-            gameOptionsList.ItemsSource = gameOptions;
+            createGameOptionList();                                 //Populate the list of GameTypes.
+            gameOptionsList.ItemsSource = gameOptions;              //Pass the GameType list as the listboxes item source
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-        }
+        }//end MainPage() constructor
 
-        //Create list of options for the user
+        //Create list of game options for the user
         private void createGameOptionList()
         {
-            GameType option;
+            GameType option;                                                //Declare GameType object
 
-            if (gameOptions == null)
+            if (gameOptions == null)               //Instantiate list of GameTypes if it hasnt been already
             {
                 gameOptions = new List<GameType>();
             }
 
-            option = new GameType();
-            option.userChoice = " 4 Letter Word Jumble";
-            gameOptions.Add(option);
+            option = new GameType();                                //We then instantiate the GameType object, give its instance variable
+            option.userChoice = " 4 Letter Word Jumble";            //(which is the variable we are binding) a value and add the 
+            gameOptions.Add(option);                                //object to the list
 
             option = new GameType();
-            option.userChoice = " 5 Letter Word Jumble";
+            option.userChoice = " 5 Letter Word Jumble";            //repeat this process for each game option
             gameOptions.Add(option);
 
             option = new GameType();
@@ -62,17 +62,20 @@ namespace WordJumble
 
         }//end createGameOptionList
 
+        //Tap event for the listbox
         private void listItemTap(object sender, TappedRoutedEventArgs e)
         {
+            //first get the index of the listbox item tapped by the user
             selectedIndex = Convert.ToInt32(gameOptionsList.SelectedIndex);
 
-            if(selectedIndex >= 0 && selectedIndex <= 3)
+            if(selectedIndex >= 0 && selectedIndex <= 3)  //If the index is between 0-3 (including 0 and 3)
             {
-                Frame.Navigate(typeof(Game), new DataPasser { data = selectedIndex });
+                //Go to Game.xaml and pass the users choice using the DataPasser.cs class
+                Frame.Navigate(typeof(Game), new DataPasser { data = selectedIndex }); 
             }
-            else if(selectedIndex == 4)
+            else if(selectedIndex == 4)//otherwise
             {
-                Frame.Navigate(typeof(HighScoresMenu));
+                Frame.Navigate(typeof(HighScoresMenu));   //Go to the high score menu page
             }
         }
     }
