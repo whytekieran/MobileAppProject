@@ -54,7 +54,8 @@
                  Width="300"
                  TextWrapping="Wrap" 
                  Text="" 
-                                      
+                                     
+                                       
                  InputScope="Chat"/>
         <!--Button the user presses when he/she wants to enter the word they have typed-->
         <Button x:ConnectionId='2' Content="Enter" 

@@ -43,6 +43,7 @@
       <RootProperty Name="InputScope" />
       <RootProperty Name="HorizontalAlignment" />
       <RootEvent Name="GotFocus" />
+      <RootEvent Name="KeyDown" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />

@@ -224,5 +224,15 @@ namespace WordJumble
             //the txtblock for outputting correct or incorrect should not show anything
             txtResult.Text = "";
         }
+
+        //Detects when the enter key has been pressed on the keyboard
+        private void enterKeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            //when the enter key has been pressed
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                enterWordClick(sender, e);//Call the same method that is used for the enter word button
+            }
+        }
     }
 }
