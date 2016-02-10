@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -34,6 +35,9 @@ namespace WordJumble
         //When the page is navigated to
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //firstly make sure the page is in portrait orientation
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+
             List<HighScore> tasks;                           //Declare list of high score objects
             con = new SQLiteConnection("GameDatabase.db");   //Instantiate a new SQLite connection to the game database
             con.CreateTable<HighScore>();                    //Create a table for the connection using HighScore objects to represent

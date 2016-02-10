@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +30,12 @@ namespace WordJumble
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }//end MainPage() constructor
+
+        //On navigated to we make sure the page is displayed in portrait
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+        }
 
         //Create list of game options for the user
         private void createGameOptionList()

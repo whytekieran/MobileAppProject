@@ -8,50 +8,171 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <!--Page that holds the game-->
+    <!--Grid called gameDisplay used to hold all the UI components for the game-->
+    <Grid x:Name="gameDisplay">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualState x:Name="Portrait"/>
+    			<VisualState x:Name="Landscape">
+    				<Storyboard>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="textBlock">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>73,10,0,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="txtScore">
+    						<DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtScore">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>200,10,0,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="txtJumbledWord">
+    						<DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtJumbledWord">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>416,73,109,240</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="txtTimeDisplay">
+    						<DiscreteObjectKeyFrame KeyTime="0" Value="0:00"/>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="txtTimeDisplay">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<VerticalAlignment>Top</VerticalAlignment>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtTimeDisplay">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>487,12,114,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="txtEnteredWord">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<VerticalAlignment>Top</VerticalAlignment>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtEnteredWord">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>73,72,294,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="button">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<VerticalAlignment>Top</VerticalAlignment>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="button">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>98,130,371,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="txtResult">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<VerticalAlignment>Bottom</VerticalAlignment>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtResult">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>333,0,34,168</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="txtTimeDisplay">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<x:Double>66</x:Double>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+        <!--TextBlock used to output the time of the timer for the game, named so it
+        can be referenced in cs-->
         <TextBlock x:Name="txtTimeDisplay" 
                    HorizontalAlignment="Center" 
-                   Text="0:00:000" 
                    FontSize="31"
-                   Margin="149,176,134,426" 
+                   Margin="174,168,150,434" 
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
-                   Style="{StaticResource TitleTextBlockStyle}" 
-                   Width="117"/>
-        <TextBlock HorizontalAlignment="Left" 
+                   Style="{StaticResource TitleTextBlockStyle}" Text="0:00"/>
+        <!--Outputting the word "Score" used as a label-->
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 
                    Text="Score: " 
                    FontSize="30"
                    VerticalAlignment="Top"
                    FontWeight="Bold"
                    Margin="100,245,0,0"/>
+        <!--Outputs the users current score, named so it can be referenced in cs-->
         <TextBlock x:Name="txtScore"
                    HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 
-                   Text="rffy" 
+                   Text="" 
                    FontSize="30"
                    FontWeight="Bold"
                    VerticalAlignment="Top" 
                    Margin="250,245,0,0"/>
+        <!--Outputs the jumbled word the user is trying to unjumble, named so it can be
+        referenced in cs-->
         <TextBlock x:Name="txtJumbledWord" 
                    Text=""
                    FontSize="50"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   TextWrapping="Wrap"/>
+                   TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
+        	<TextBlock.RenderTransform>
+        		<CompositeTransform/>
+        	</TextBlock.RenderTransform>
+        </TextBlock>
+        <!--Textbox to allow the user to enter the unjumbled version of the word in cs-->
         <TextBox x:ConnectionId='1' x:Name="txtEnteredWord"
                  VerticalAlignment="Center" 
                  Margin="0,378,0,223" 
                  Width="300"
                  TextWrapping="Wrap" 
                  Text="" 
-                                      
+                                     
+                                       
                  InputScope="Chat"/>
-        <Button x:ConnectionId='2' Content="Enter" 
+        <!--Button the user presses when he/she wants to enter the word they have typed-->
+        <Button x:ConnectionId='2' x:Name="button" Content="Enter" 
                 HorizontalAlignment="Center" 
-                Margin="149,438,142,145" 
+                Margin="100,438,102,145" 
                                       
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center" Width="198" RenderTransformOrigin="0.5,0.5">
+        	<Button.RenderTransform>
+        		<CompositeTransform/>
+        	</Button.RenderTransform>
+        </Button>
+        <!--Will output if the word entered by the user is correct or incorrect, named
+        so it can be referenced in cs-->
         <TextBlock x:Name="txtResult"
                    HorizontalAlignment="Center"
                    Height="65"
@@ -61,15 +182,6 @@
                    TextAlignment="Center"
                    Text="" 
                    Margin="50,509,50,66" />
-        <TextBlock x:Name="txtUnJumbledWord" 
-                   HorizontalAlignment="Center"  
-                   TextWrapping="Wrap" 
-                   Text=""
-                   Height="30"
-                   Width="100"
-                   TextAlignment="Center"
-                   FontSize="10" 
-                   Margin="149,600,151,10"/>
     </Grid>
 </Page>
 

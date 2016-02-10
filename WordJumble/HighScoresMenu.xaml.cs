@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +29,12 @@ namespace WordJumble
             createGameOptionList();                                         //Populate list with high score menu options
             highscoreOptionsList.ItemsSource = highscoreOptions;            //Make list of GameTypes the item source for the list
         }//end HighScoresMenu constructor
+
+        //On navigated to we make sure the page is displayed in portrait
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+        }
 
         //Create list of high score options for the user
         private void createGameOptionList()

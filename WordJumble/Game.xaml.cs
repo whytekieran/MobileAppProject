@@ -7,11 +7,14 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -37,13 +40,46 @@ namespace WordJumble
         Stopwatch stopWatch;                                    //Stopwatch works by ticks specified by timer
         private long mins;                                      //Holds the minutes of the timer
         private long secs;                                      //Holds the seconds of the timer
-
+        private SimpleOrientationSensor _simpleorientation; 
+   
         //Constructor for Game.xaml
         public Game()
         {
             this.InitializeComponent();
             copyDatabase();                                     //Copy the database so it can be found locally
+
+            _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
+
+            // Assign an event handler for the sensor orientation-changed event 
+            if (_simpleorientation != null)
+            {
+                _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
+            } 
         }//end constructor
+
+        //This event handler is triggered when the orientation of the phone changes, because the method uses the
+        //async keyword it will happen asynchronously. Hence allowing the application to continue with other tasks while this
+        //method is being executed in a seperate thread.
+        private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                SimpleOrientation orientation = e.Orientation;      //Here we retrieve th current orientation of the sensor
+                switch (orientation)
+                {
+                    case SimpleOrientation.NotRotated:  //If the phone isnt being rotated (portrait)
+                        //Portrait 
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;  //Set orientation to portrait
+                        VisualStateManager.GoToState(this, "Portrait", true);                       //use portrait visual state
+                        break;
+                    case SimpleOrientation.Rotated90DegreesCounterclockwise:  //if rotated 90degrees to the left
+                        //Landscape
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape; //set orientation to landscape
+                        VisualStateManager.GoToState(this, "Landscape", true);                      //use the landscape visual state
+                        break;
+                }
+            });
+        }
 
         //When the game page has been navigated to.....
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -71,6 +107,15 @@ namespace WordJumble
         private void timerTick(object sender, object e)
         {
             --secs; //Every tick removes one second
+
+            //Set the textblocks holding score and jumbled word every tick, this is used to correct a bug detected earlier,
+            //when the phone orientation changes the values are not maintained in the textblocks, this insures that they are
+            //repeatedly updated
+            if (jumbledWord != null)
+            {
+                txtJumbledWord.Text = jumbledWord;
+                txtScore.Text = score.ToString();
+            }
 
             txtTimeDisplay.Text = mins.ToString() + ":" + secs.ToString(); //Output mins and seconds to the screen
 
@@ -195,8 +240,9 @@ namespace WordJumble
         //Button click for when user wants to submit a word
         private void enterWordClick(object sender, RoutedEventArgs e)
         {
-            //Get the word entered by the user
+            //Get the word entered by the user and remove any whitespace before or after the word
             userWord = txtEnteredWord.Text;
+            userWord = userWord.Trim();
            
             //Check if it is equal to the unjumbled version of the word and if it is..
             if(userWord.Equals(unJumbledWord, StringComparison.OrdinalIgnoreCase))

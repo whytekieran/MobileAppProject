@@ -8,19 +8,35 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <!--The Main Grid for the page called LayoutRoot-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        
-    <Grid Margin="5,5,5,5">
+        <!--Second grid inside main grid holding a listbox-->
+     <Grid Margin="5,5,5,5">
+         <!--Listbox is contained inside a scrollviewer-->
             <ScrollViewer>
+                <!--Give listbox a name so it can be referenced-->
                 <ListBox x:Name="gameHighScoreList"
                      Margin="20,20,20,20"
                      FontWeight="Bold"
                      Background="Transparent">
+                    <!--Here is the item template for the list box item, all listbox items 
+                    that are bind here will have this format-->
                     <ListBox.ItemTemplate>
                    <DataTemplate>
+                       <!--The listbox item-->
                       <ListBoxItem Background="{StaticResource ListBoxItemSelectedBackgroundThemeBrush}"
                                    Margin="5,5,5,5">
+                          <!--Listbox item holds a stackpanel with horizontal alignment
+                          aal children of this stack panel will be alligned 
+                          horizontally-->
                         <StackPanel Orientation="Horizontal">
+                            <!--The stackpanel contains three textblocks for outputting the
+                            rank, score and name of each player in the highscores list.
+                            Because of the allignment of the stackpanel these will be side by
+                            side meaning each listbox item is a stackpanel with three 
+                            textblocked aligned next to eachother-->
+                            <!--Outputs players rank, named so the textblock can be 
+                            referenced in cs-->
                             <TextBlock x:Name="txtRank"
                                 TextWrapping="Wrap"
                                 Style="{StaticResource ListViewItemTextBlockStyle}"
@@ -31,16 +47,20 @@
                                 Margin="10"
                                 FontSize="13"
                                 VerticalAlignment="Center"/>
+                               <!--Outputs players rank, named so the textblock can be 
+                               referenced in cs-->
                             <TextBlock x:Name="txtScore"
                                 TextWrapping="Wrap"
                                 Style="{StaticResource ListViewItemTextBlockStyle}"
                                 HorizontalAlignment="Center" 
-                                Text="{Binding score}"
+                                Text="{Binding Score}"
                                 Height="40"
                                 Width="90"
                                 Margin="10"
                                 FontSize="13"
                                 VerticalAlignment="Center"/>
+                               <!--Outputs players rank, named so the textblock can be 
+                               referenced in cs-->
                             <TextBlock x:Name="txtName"
                                 TextWrapping="Wrap"
                                 Style="{StaticResource ListViewItemTextBlockStyle}"
@@ -60,4 +80,5 @@
         </Grid>
     </Grid>
 </Page>
+<!--Closing tags abnd end of page-->
 
