@@ -146,7 +146,7 @@
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Style="{StaticResource TitleTextBlockStyle}" 
-                   Text="0:00"/>
+                   Text=""/>
         <!--Outputting the word "Score" used as a label-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 

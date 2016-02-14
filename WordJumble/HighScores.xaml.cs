@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,12 +26,21 @@ namespace WordJumble
         private SQLiteConnection con;                //Declare an SQLite connection
         private DataPasser dataHolder;               //Declare a DataPasser to receive incoming information from HighScoresMenu.xaml
         private int rank;                            //Used to assign the rank of each player
+        private SimpleOrientationSensor _simpleorientation;
 
         //Constructor for HighScores.xaml
         public HighScores()
         {
             this.InitializeComponent();
             copyDatabase();                                     //Copys the database file so it can be found locally in the application
+
+            _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
+
+            // Assign an event handler for the sensor orientation-changed event 
+            if (_simpleorientation != null)
+            {
+                _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
+            } 
         }//end of constructor
 
         //When the page is navigated to
@@ -60,6 +71,29 @@ namespace WordJumble
 
             gameHighScoreList.ItemsSource = tasks;          //Once list is populated add it as the item source for the listbox
         }//end onNavigatedTo()
+
+        //This event handler is triggered when the orientation of the phone changes, because the method uses the
+        //async keyword it will happen asynchronously. Hence allowing the application to continue with other tasks while this
+        //method is being executed in a seperate thread.
+        //On this page we want the orientation to remain in portrait no matter what direction the phone has been flipped in
+        private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                SimpleOrientation orientation = e.Orientation;      //Here we retrieve the current orientation of the sensor
+                switch (orientation)
+                {
+                    case SimpleOrientation.NotRotated:  //If the phone isnt being rotated (portrait)
+                        //Portrait 
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;  //Set orientation to portrait
+                        break;
+                    case SimpleOrientation.Rotated90DegreesCounterclockwise:  //if rotated 90degrees to the left
+                        //Landscape
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait; //set orientation to portrait
+                        break;
+                }
+            });
+        }
 
         //When the page has been navigated away from
         protected override void OnNavigatedFrom(NavigationEventArgs e)

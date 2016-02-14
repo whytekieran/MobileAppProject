@@ -5,11 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,12 +30,21 @@ namespace WordJumble
         private int id;                                       //Id representing the PK of the highscore table for an insert
         private string name;                                  //Represents user name for a high score table insert
         private int score;                                    //Represents score for a high score table insert
+        private SimpleOrientationSensor _simpleorientation;
 
         //Constructor for GameOver.xaml
         public GameOver()
         {
             this.InitializeComponent();
             copyDatabase();                                    //Copy the database so it can be found locally
+
+            _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
+
+            // Assign an event handler for the sensor orientation-changed event 
+            if (_simpleorientation != null)
+            {
+                _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
+            } 
         }//end constructor
 
         //When the page has been navigated to...
@@ -50,6 +61,29 @@ namespace WordJumble
             id = getrowCount(gameType);                         //Use gametype to decide which query to excute, returns amount of rows
                                                                 //in table for the highscores for the game
             txtScore.Text = score.ToString();                   //output users score to the screen
+        }
+
+        //This event handler is triggered when the orientation of the phone changes, because the method uses the
+        //async keyword it will happen asynchronously. Hence allowing the application to continue with other tasks while this
+        //method is being executed in a seperate thread.
+        //On this page we want the orientation to remain in portrait no matter what direction the phone has been flipped in
+        private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                SimpleOrientation orientation = e.Orientation;      //Here we retrieve the current orientation of the sensor
+                switch (orientation)
+                {
+                    case SimpleOrientation.NotRotated:  //If the phone isnt being rotated (portrait)
+                        //Portrait 
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;  //Set orientation to portrait
+                        break;
+                    case SimpleOrientation.Rotated90DegreesCounterclockwise:  //if rotated 90degrees to the left
+                        //Landscape
+                        DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait; //set orientation to portrait
+                        break;
+                }
+            });
         }
 
         //Copying the database so it can be found locally

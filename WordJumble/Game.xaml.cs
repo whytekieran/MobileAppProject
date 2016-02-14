@@ -64,7 +64,7 @@ namespace WordJumble
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                SimpleOrientation orientation = e.Orientation;      //Here we retrieve th current orientation of the sensor
+                SimpleOrientation orientation = e.Orientation;      //Here we retrieve the current orientation of the sensor
                 switch (orientation)
                 {
                     case SimpleOrientation.NotRotated:  //If the phone isnt being rotated (portrait)
