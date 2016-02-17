@@ -1,6 +1,7 @@
 Assets\Logo.scale-240.png
 Assets\SmallLogo.scale-240.png
 Assets\SplashScreen.scale-240.png
+Assets\Square71x71Logo.scale-100.png
 Assets\Square71x71Logo.scale-240.png
 Assets\StoreLogo.scale-240.png
 Assets\WideLogo.scale-240.png
@@ -12,3 +13,10 @@ HighScoresMenu.xbf
 MainPage.xbf
 WordJumble.xr.xml
 GameDatabase.db
+Images\logo150x150.png
+Images\logo24x24.png
+Images\logo310x150.png
+Images\logo44x44.png
+Images\logo480x800.png
+Images\logo50x50.png
+Images\logo71x71.png
