@@ -54,12 +54,15 @@
                    Grid.Row="1"/>
         <!--Textbox for the user to enter his/her name, named so it can be referenced
         in cs-->
-        <TextBox x:Name="txtUserName" 
+        <TextBox x:ConnectionId='1' x:Name="txtUserName" 
                  HorizontalAlignment="Left" 
                  Margin="216,221.667,0,-239" 
                  TextWrapping="Wrap" 
                  Text="" 
-                 VerticalAlignment="Top" Grid.Row="1" Width="143"/>
+                 VerticalAlignment="Top" 
+                                       
+                 Grid.Row="1" 
+                 Width="143"/>
         <!--Outputting the word "Enter Name Here" used as a label-->
         <TextBlock HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 
@@ -70,7 +73,7 @@
                    Grid.Row="1"/>
         <!--Button the user presses when he/she wants to save their score information
         into highscores-->
-        <Button x:ConnectionId='1' x:Name="btnSaveScore"
+        <Button x:ConnectionId='2' x:Name="btnSaveScore"
                 Content="Save" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 

@@ -38,7 +38,7 @@ namespace WordJumble
             this.InitializeComponent();
             copyDatabase();                                    //Copy the database so it can be found locally
 
-            _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
+            _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a default version of an orientation sensor.
 
             // Assign an event handler for the sensor orientation-changed event 
             if (_simpleorientation != null)
@@ -178,6 +178,16 @@ namespace WordJumble
             }
 
             Frame.Navigate(typeof(MainPage)); //Navigate back to main menu, game is now over, and high score has been entered
+        }
+
+        //Detects when the enter key has been pressed on the keyboard
+        private void enterKeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            //when the enter key has been pressed
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                btnSaveScore_Click(sender, e);//Call the same method that is used for the enter word button
+            }
         }
     }
 }

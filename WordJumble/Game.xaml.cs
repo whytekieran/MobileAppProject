@@ -48,6 +48,9 @@ namespace WordJumble
             this.InitializeComponent();
             copyDatabase();                                     //Copy the database so it can be found locally
 
+            //Add event listener for the back hardware button
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
 
             // Assign an event handler for the sensor orientation-changed event 
@@ -56,6 +59,17 @@ namespace WordJumble
                 _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
             } 
         }//end constructor
+        //Event listener for the back hardware button
+
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            //if we can go back then go back 
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }//end HardwareButtons_BackPressed()
 
         //This event handler is triggered when the orientation of the phone changes, because the method uses the
         //async keyword it will happen asynchronously. Hence allowing the application to continue with other tasks while this
@@ -100,7 +114,7 @@ namespace WordJumble
            timer.Tick += timerTick;                             //Add event to timers tick event
            timer.Start();                                       //Start the timer
            stopWatch.Start();                                   //Start the stopwatch
-        }
+        }//end OnNavigatedTo()
 
         //Event for timer.Tick, timers interval has been set for one second so this event fires once a second
         //Counting down from 3 minutes
@@ -130,8 +144,6 @@ namespace WordJumble
                //if mins is less than zero and seconds is zero to (outer if)
                if(mins < 0)
                {
-                  timer.Stop();                                         //Stop the timer
-                  stopWatch.Stop();                                     //Stop the stopwatch
                   txtTimeDisplay.Text = "0" + ":" + "00";               //Output zero minutes and seconds
                   MessageBoxDisplay();                                  //Output a message box stating the games over and the score
                   
@@ -153,6 +165,8 @@ namespace WordJumble
         //When the page has been navigated away from
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            timer.Stop();                                         //Stop the timer
+            stopWatch.Stop();     
             //Check if the connection is open and if it is
             if (con != null)
                 con.Close(); // Close the database connection.   

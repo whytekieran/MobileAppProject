@@ -9,6 +9,7 @@ using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -34,6 +35,9 @@ namespace WordJumble
             this.InitializeComponent();
             copyDatabase();                                     //Copys the database file so it can be found locally in the application
 
+            //Add event listener for the back hardware button
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
 
             // Assign an event handler for the sensor orientation-changed event 
@@ -42,6 +46,17 @@ namespace WordJumble
                 _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
             } 
         }//end of constructor
+
+        //Event listener for the back hardware button
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            //if we can go back then go back one page
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }//end HardwareButtons_BackPressed()
 
         //When the page is navigated to
         protected override void OnNavigatedTo(NavigationEventArgs e)

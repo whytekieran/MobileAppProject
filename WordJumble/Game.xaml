@@ -46,7 +46,7 @@
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
     					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="txtTimeDisplay">
-    						<DiscreteObjectKeyFrame KeyTime="0" Value="0:00"/>
+    						<DiscreteObjectKeyFrame KeyTime="0" Value=""/>
     					</ObjectAnimationUsingKeyFrames>
     					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="txtTimeDisplay">
     						<DiscreteObjectKeyFrame KeyTime="0">

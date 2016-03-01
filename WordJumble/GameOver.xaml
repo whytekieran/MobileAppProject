@@ -59,7 +59,10 @@
                  Margin="216,221.667,0,-239" 
                  TextWrapping="Wrap" 
                  Text="" 
-                 VerticalAlignment="Top" Grid.Row="1" Width="143"/>
+                 VerticalAlignment="Top" 
+                 KeyDown="enterKeyDown"
+                 Grid.Row="1" 
+                 Width="143"/>
         <!--Outputting the word "Enter Name Here" used as a label-->
         <TextBlock HorizontalAlignment="Left" 
                    TextWrapping="Wrap" 

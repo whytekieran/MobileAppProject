@@ -7,6 +7,7 @@ using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,6 +32,9 @@ namespace WordJumble
             createGameOptionList();                                 //Populate the list of GameTypes.
             gameOptionsList.ItemsSource = gameOptions;              //Pass the GameType list as the listboxes item source
 
+            //Add event listener for the back hardware button
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
 
             // Assign an event handler for the sensor orientation-changed event 
@@ -41,6 +45,17 @@ namespace WordJumble
 
             //this.NavigationCacheMode = NavigationCacheMode.Required;
         }//end MainPage() constructor
+
+        //Event listener for the back hardware button
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            //if we can go back then go back
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }//end HardwareButtons_BackPressed()
 
         //On navigated to we make sure the page is displayed in portrait(triggered when page is navigated to (opens))
         protected override void OnNavigatedTo(NavigationEventArgs e)

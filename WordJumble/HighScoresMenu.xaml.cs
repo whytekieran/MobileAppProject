@@ -32,6 +32,9 @@ namespace WordJumble
             createGameOptionList();                                         //Populate list with high score menu options
             highscoreOptionsList.ItemsSource = highscoreOptions;            //Make list of GameTypes the item source for the list
 
+            //Add event listener for the back hardware button
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             _simpleorientation = SimpleOrientationSensor.GetDefault();      //Get a defualt version of an orientation sensor.
 
             // Assign an event handler for the sensor orientation-changed event 
@@ -40,6 +43,17 @@ namespace WordJumble
                 _simpleorientation.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
             } 
         }//end HighScoresMenu constructor
+
+        //Event listener for the back hardware button
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            //if we can go back then go back
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }//end HardwareButtons_BackPressed()
 
         //On navigated to we make sure the page is displayed in portrait
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -5,7 +5,7 @@
   <Properties>
     <DisplayName>WordJumble</DisplayName>
     <PublisherDisplayName>Kieran</PublisherDisplayName>
-    <Logo>Images/logo50x50.png</Logo>
+    <Logo>Images/jlogo50x50.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.3.1</OSMinVersion>
@@ -16,10 +16,10 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WordJumble.App">
-      <m3:VisualElements DisplayName="WordJumble" Square150x150Logo="Images/logo150x150.png" Square44x44Logo="Images/logo44x44.png" Description="WordJumble" ForegroundText="light" BackgroundColor="transparent">
-        <m3:DefaultTile Wide310x150Logo="Images/logo310x150.png" Square71x71Logo="Images\logo71x71.png">
+      <m3:VisualElements DisplayName="WordJumble" Square150x150Logo="Images/jlogo150x150.png" Square44x44Logo="Images/jlogo44x44.png" Description="WordJumble" ForegroundText="light" BackgroundColor="transparent">
+        <m3:DefaultTile Wide310x150Logo="Images/jlogo310x150.png" Square71x71Logo="Images\jlogo71x71.png">
         </m3:DefaultTile>
-        <m3:SplashScreen Image="Images/logo480x800.png" />
+        <m3:SplashScreen Image="Images/jlogo480x800.png" />
         <m3:InitialRotationPreference>
           <m3:Rotation Preference="portrait" />
         </m3:InitialRotationPreference>

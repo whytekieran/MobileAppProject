@@ -43,26 +43,26 @@
     <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Assets\WideLogo.scale-240.png">
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo150x150.png">
-      <PackagePath>Images\logo150x150.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo150x150.png">
+      <PackagePath>Images\jlogo150x150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo24x24.png">
-      <PackagePath>Images\logo24x24.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo24x24.png">
+      <PackagePath>Images\jlogo24x24.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo310x150.png">
-      <PackagePath>Images\logo310x150.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo310x150.png">
+      <PackagePath>Images\jlogo310x150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo44x44.png">
-      <PackagePath>Images\logo44x44.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo44x44.png">
+      <PackagePath>Images\jlogo44x44.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo480x800.png">
-      <PackagePath>Images\logo480x800.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo480x800.png">
+      <PackagePath>Images\jlogo480x800.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo50x50.png">
-      <PackagePath>Images\logo50x50.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo50x50.png">
+      <PackagePath>Images\jlogo50x50.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\logo71x71.png">
-      <PackagePath>Images\logo71x71.png</PackagePath>
+    <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\Images\jlogo71x71.png">
+      <PackagePath>Images\jlogo71x71.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
     <AppxPackagedFile Include="B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\GameDatabase.db">
