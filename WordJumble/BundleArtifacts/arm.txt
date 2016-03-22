@@ -1,0 +1,3 @@
+MainPackage=B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Release\WordJumble_1.1.0.0_Bundle\WordJumble_1.1.0.0_ARM.appx
+SymbolPackage=B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\AppPackages\WordJumble_1.1.0.0_Test\WordJumble_1.1.0.0_ARM.appxsym
+ResourcePack=B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\bin\ARM\Release\WordJumble_1.1.0.0_Bundle\WordJumble_1.1.0.0_scale-100.appx

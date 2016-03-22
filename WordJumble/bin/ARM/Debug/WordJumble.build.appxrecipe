@@ -6,7 +6,7 @@
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
     <SolutionConfiguration>Debug|ARM</SolutionConfiguration>
     <PackageArchitecture>arm</PackageArchitecture>
-    <PackageIdentityName>b0e8a84f-4068-4c79-96b4-6e0617b54e7e</PackageIdentityName>
+    <PackageIdentityName>4b5e179e-ddf8-4232-a36a-b2426f757b3d</PackageIdentityName>
     <IntermediateOutputPath>B:\Software Engineering Year 3 GMIT\Mobile App Development\Practice\WordJumble\WordJumble\obj\ARM\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>

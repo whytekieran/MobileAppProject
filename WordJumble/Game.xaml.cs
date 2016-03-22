@@ -73,7 +73,7 @@ namespace WordJumble
 
         //This event handler is triggered when the orientation of the phone changes, because the method uses the
         //async keyword it will happen asynchronously. Hence allowing the application to continue with other tasks while this
-        //method is being executed in a seperate thread.
+        //method is being executed in a seperate to the UI thread.
         private async void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

@@ -569,5 +569,3 @@ namespace WordJumble.WordJumble_XamlTypeInfo
 }
 
 
-
-

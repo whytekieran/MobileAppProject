@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="WordJumble.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordJumble"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--The Main Grid for the page called LayoutRoot-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Declaring row definitions for the grid, both with height of auto-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--Stackpanel named TitlePanel contains the name of the application 
+        and page title. It is the first grid row-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="10,10,10,10">
+            <!--Textblock inside stackpanel to output the page title-->
+            <TextBlock Text="Word Jumble"
+                       TextAlignment="Center"
+                       Margin="2,2,2,2"
+                       FontWeight="Bold"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </StackPanel>
+
+        <!--Grid here is the second row inside main grid called LayoutRoot.
+        This grid contains a listbox which presents the user with some game options.
+        The content of each listbox item is outputted using data binding-->
+        <Grid Grid.Row="1"
+              Margin="5,5,5,5">
+            <!--Give listbox a name so it can be referenced-->
+            <ListBox x:ConnectionId='1' x:Name="gameOptionsList"
+                                         
+                     Margin="15,15,15,15"
+                     Background="Transparent">
+                <!--Here is the item template for the list box item, all listbox items 
+                that are bind here will have this format-->
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="{StaticResource ApplicationSecondaryForegroundThemeBrush}">
+                            <!--Binding using userChoice instance variable from GameType.cs-->
+                            <TextBlock Text="{Binding userChoice}"
+                                           Style="{StaticResource ListViewItemTextBlockStyle}"
+                                           Height="50"
+                                           Width="350"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Bold">
+                                </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Page>
+<!--Page ends here-->
+

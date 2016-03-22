@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="b0e8a84f-4068-4c79-96b4-6e0617b54e7e" Publisher="CN=Kieran" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="b0e8a84f-4068-4c79-96b4-6e0617b54e7e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="62129GingaNinja.WordJam" Publisher="CN=B27D1599-EBC6-4F59-BB58-9FF319FBF1D4" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="4b5e179e-ddf8-4232-a36a-b2426f757b3d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>WordJumble</DisplayName>
-    <PublisherDisplayName>Kieran</PublisherDisplayName>
+    <DisplayName>Word Jam</DisplayName>
+    <PublisherDisplayName>Ginga Ninja</PublisherDisplayName>
     <Logo>Images/jlogo50x50.png</Logo>
   </Properties>
   <Prerequisites>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WordJumble.App">
-      <m3:VisualElements DisplayName="WordJumble" Square150x150Logo="Images/jlogo150x150.png" Square44x44Logo="Images/jlogo44x44.png" Description="WordJumble" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="Word Jam" Square150x150Logo="Images/jlogo150x150.png" Square44x44Logo="Images/jlogo44x44.png" Description="WordJumble" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Images/jlogo310x150.png" Square71x71Logo="Images\jlogo71x71.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Images/jlogo480x800.png" />

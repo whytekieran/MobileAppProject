@@ -22,7 +22,7 @@
                     Grid.Row="0"
                     Margin="10,10,10,10">
             <!--Textblock inside stackpanel to output the page title-->
-            <TextBlock Text="Word Jumble"
+            <TextBlock x:Uid="gameTitle"
                        TextAlignment="Center"
                        Margin="2,2,2,2"
                        FontWeight="Bold"

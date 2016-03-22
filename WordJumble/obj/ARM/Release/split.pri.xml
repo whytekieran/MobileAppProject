@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="62129GingaNinja.WordJam" version="1.0" primary="true">
+		<Qualifiers>
+			<Scale>240</Scale>
+		</Qualifiers>
+		<ResourceMapSubtree name="Files">
+			<NamedResource name="App.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/App.xbf">
+				<Candidate type="Path">
+					<Value>App.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="Game.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/Game.xbf">
+				<Candidate type="Path">
+					<Value>Game.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="GameDatabase.db" uri="ms-resource://62129GingaNinja.WordJam/Files/GameDatabase.db">
+				<Candidate type="Path">
+					<Value>GameDatabase.db</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="GameOver.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/GameOver.xbf">
+				<Candidate type="Path">
+					<Value>GameOver.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="HighScores.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/HighScores.xbf">
+				<Candidate type="Path">
+					<Value>HighScores.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="HighScoresMenu.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/HighScoresMenu.xbf">
+				<Candidate type="Path">
+					<Value>HighScoresMenu.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="MainPage.xbf" uri="ms-resource://62129GingaNinja.WordJam/Files/MainPage.xbf">
+				<Candidate type="Path">
+					<Value>MainPage.xbf</Value>
+				</Candidate>
+			</NamedResource>
+			<NamedResource name="WordJumble.xr.xml" uri="ms-resource://62129GingaNinja.WordJam/Files/WordJumble.xr.xml">
+				<Candidate type="Path">
+					<Value>WordJumble.xr.xml</Value>
+				</Candidate>
+			</NamedResource>
+			<ResourceMapSubtree name="Assets">
+				<NamedResource name="Logo.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/Logo.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\Logo.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="SmallLogo.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/SmallLogo.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\SmallLogo.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="SplashScreen.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/SplashScreen.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\SplashScreen.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Square71x71Logo.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/Square71x71Logo.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\Square71x71Logo.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="StoreLogo.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/StoreLogo.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\StoreLogo.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="WideLogo.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Assets/WideLogo.png">
+					<Candidate qualifiers="Scale-240" isDefault="true" type="Path">
+						<Value>Assets\WideLogo.scale-240.png</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+			<ResourceMapSubtree name="Images">
+				<NamedResource name="jlogo150x150.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo150x150.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo150x150.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo24x24.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo24x24.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo24x24.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo310x150.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo310x150.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo310x150.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo44x44.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo44x44.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo44x44.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo480x800.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo480x800.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo480x800.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo50x50.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo50x50.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo50x50.png</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="jlogo71x71.png" uri="ms-resource://62129GingaNinja.WordJam/Files/Images/jlogo71x71.png">
+					<Candidate type="Path">
+						<Value>Images\jlogo71x71.png</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>
